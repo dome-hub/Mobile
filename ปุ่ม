@@ -1,0 +1,47 @@
+import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
+import { StyleSheet, Text, View, Button, TouchableOpacity, Alert } from 'react-native';
+
+const App = () => {
+  const [counter, setCounter] = useState(0)
+
+  return (
+    <View style={styles.container}>
+
+      
+      <View style={{ flex: 1, backgroundColor: 'lightsalmon', borderWidth: 1, alignItems: 'center', justifyContent: 'center' }}>
+
+        <Text style={{ fontSize: 250, fontWeight: 'bold' }}>{counter} </Text>
+      </View>
+      <View style={{ flex: 1, flexDirection: 'row', backgroundColor: 'lightpink', borderWidth: 1, justifyContent: 'center' }}>
+        <TouchableOpacity onPress={() => { setCounter(counter + 1); console.log(counter) }}>
+          <View style={{ height: 100, width: 100, backgroundColor: 'green', alignItems: 'center', justifyContent: 'center', borderRadius: 8 }}>
+            <Text style={{ fontSize: 30, fontWeight: 'bold' }}>++</Text>
+          </View></TouchableOpacity>
+
+        <TouchableOpacity onPress={() => { setCounter(counter - 1); console.log(counter) }}>
+          <View style={{ height: 100, width: 100, backgroundColor: 'red', alignItems: 'center', justifyContent: 'center', borderRadius: 8 }}>
+            <Text style={{ fontSize: 30, fontWeight: 'bold' }}>--</Text>
+          </View></TouchableOpacity>
+      </View>
+
+      <View style={{ flex: 1, backgroundColor: 'lightblue', borderWidth: 1 }}>
+        <Button
+          title="Press me"
+          color="darkblue"
+          onPress={() => console.log('You hit me, blue')}
+        />
+      </View>
+
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'green',
+  },
+});
+
+export default App;
