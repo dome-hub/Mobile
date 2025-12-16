@@ -1,0 +1,93 @@
+import { StyleSheet, Text, View, Image , Button } from 'react-native';
+
+const App = () => {
+  return (
+    <View style={styles.container}>
+
+      {/* แถวบน */}
+      <View style={styles.TopAndBottomRow}>
+
+        {/* กล่องสีส้ม (เหมือนเดิม) */}
+        <View style={styles.orangeBox}>
+          <View style={styles.circle}>
+            <Image
+              source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn9uFctZE4bJ6V9Dssa0spfXHW--FAexoyGw&s' }}
+              style={styles.image}
+            />\
+          </View>
+        </View>
+
+        {/* กล่องสีเหลืองใส่ชื่อ */}
+        <View style={styles.nameBox}>
+          <Text style={styles.nameText}>Kunakorn Kanlayawutipong</Text>
+          <Text style={styles.nameText}>6621600143</Text>
+        </View>
+
+      </View>
+
+      {/* แถวกลาง */}
+      <View style={styles.middleRow}>
+        <Button title= ' Press me' color ='gold'  onPress={()=>console.log ('You hit me')}/>
+        <View style={{ flex: 1, backgroundColor: 'lightgreen' }} />
+        
+      </View>
+
+      
+      {/* แถวล่าง (เหมือนเดิม) */}
+      <View style={styles.TopAndBottomRow}>
+        <View style={{ flex: 3, backgroundColor: 'gold' }} />
+        <View style={{ flex: 1, backgroundColor: 'lightsalmon' }} />
+      </View>
+    
+    </View>
+  );
+};
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+
+  TopAndBottomRow: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+
+  orangeBox: {
+    flex: 1,
+    backgroundColor: 'lightsalmon',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  circle: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    backgroundColor: '#fff',
+    overflow: 'hidden',
+  },
+
+  image: {
+    width: '100%',
+    height: '100%',
+  },
+
+  /* กล่องชื่อ */
+  nameBox: {
+    flex: 3,
+    backgroundColor: 'gold',
+    justifyContent: 'center',
+    paddingLeft: 10,
+  },
+
+  nameText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+
+  middleRow: {
+    flex: 4,
+  },
+});
+
+export default App;
