@@ -1,8 +1,21 @@
-import { StyleSheet, Text, View, Image , Button } from 'react-native';
+import { StyleSheet, Text, View, Image , Button,TouchableOpacity, Alert } from 'react-native';
 
 const App = () => {
   return (
     <View style={styles.container}>
+      {/*ปุ่มด้านบนสุด */}
+      <View style={{flex:1,backgroundColor:'lightsalmon',borderWidth:1,alignItems:'center'
+        ,justifyContent:'center'
+      }}>
+        <TouchableOpacity onPress={()=>Alert.alert('แจ้งเตือน ', 'จ่ายค่าไฟด้วย')}>
+        <View style={{height:30, width:200,backgroundColor:'#fff',alignContent:'center'
+          ,justifyContent:'center',borderRadius:8
+        }}>
+          <Text style={{fontSize:18,fontWeight:'bold'}}>My Button </Text>
+        </View></TouchableOpacity>
+    </View>
+
+
 
       {/* แถวบน */}
       <View style={styles.TopAndBottomRow}>
@@ -25,11 +38,12 @@ const App = () => {
 
       </View>
 
-      {/* แถวกลาง */}
+      {/* แถวกลาง ปุ่มกด*/}
       <View style={styles.middleRow}>
           <View style={{width:200}}>
           <Button title= ' Press me' 
           color ='gold'  
+          justifyContent = 'center'
           onPress={()=>console.log ('You hit me')}
           />
           </View>
