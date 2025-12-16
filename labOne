@@ -27,9 +27,14 @@ const App = () => {
 
       {/* แถวกลาง */}
       <View style={styles.middleRow}>
-        <Button title= ' Press me' color ='gold'  onPress={()=>console.log ('You hit me')}/>
-        <View style={{ flex: 1, backgroundColor: 'lightgreen' }} />
-        
+          <View style={{width:200}}>
+          <Button title= ' Press me' 
+          color ='gold'  
+          onPress={()=>console.log ('You hit me')}
+          />
+          </View>
+            <View style={{ flex: 1, backgroundColor: 'lightgreen' }} />
+          <Button title = 'Press me2' color ='darkblue' onPress={()=>console.log('You hit me2')}/>
       </View>
 
       
