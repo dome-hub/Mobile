@@ -1,0 +1,63 @@
+import React from "react";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+
+const DetailScreen = ({ route , navigation}) => {
+    const { greetings, id } = route.params || {}
+    return (
+
+        <View style={styles.container}>
+            <Text style = {styles.textStyle}> Detail Screen : {id} - {greetings}</Text>
+
+            <TouchableOpacity onPress={() => navigation.navigate('BigPic', {imageUrl : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgbANRtBOTvG8wLJD05hvbOeuGQyMlcGnVOQ&s' , msg :"Sleep MooToo 😴"})}>
+                <Image
+                    source={{
+                        uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgbANRtBOTvG8wLJD05hvbOeuGQyMlcGnVOQ&s',
+
+                    }}
+                    style={styles.image}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('BigPic', {imageUrl : 'https://yt3.googleusercontent.com/a9hyHXINpZ_Q4W1_1G0iGGOquRtO8uwtiJmPKxntiUDwO7_w0ezEZmPp-6TWFt-qhAG1bykXcQ=s900-c-k-c0x00ffffff-no-rj', msg : "Happy MooToo 😍" })}>
+                <Image
+                    source={{
+                        uri: 'https://yt3.googleusercontent.com/a9hyHXINpZ_Q4W1_1G0iGGOquRtO8uwtiJmPKxntiUDwO7_w0ezEZmPp-6TWFt-qhAG1bykXcQ=s900-c-k-c0x00ffffff-no-rj',
+
+                    }}
+                    style={styles.image}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('BigPic', {imageUrl : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6IwI5NzMaV6oglbHF2eMcUUcMFbroVsCb1A&s', msg : "Funny MooToo 😁"})}>
+                <Image
+                    source={{
+                        uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6IwI5NzMaV6oglbHF2eMcUUcMFbroVsCb1A&s',
+
+                    }}
+                    style={styles.image}
+                />
+            </TouchableOpacity>
+
+
+        </View>
+    )
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    image: {
+        width: 200,
+        height: 200,
+        borderRadius: 0,
+        borderWidth: 5,
+        borderColor: '#fff',
+        marginBottom: 1
+    },
+    textStyle : {
+        fontSize : 20 ,
+        fontWeight: 'bold' 
+    },
+})
+export default DetailScreen
