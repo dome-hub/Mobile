@@ -3,3 +3,6 @@ D:\mb68>npx create-expo-app labTwo --template blank
 D:\mb68\labTwo>npm install @react-navigation/native @react-navigation/native-stack
 
 D:\mb68\labTwo>npx expo install react-native-screens react-native-safe-area-context
+
+npm run android
+npm run web
