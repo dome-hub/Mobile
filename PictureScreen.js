@@ -1,0 +1,31 @@
+import React from "react" ;
+import {View , Text , StyleSheet ,Image} from 'react-native' ;
+
+const PictureScreen = ( {route} ) => {
+    const { imageUrl , msg} = route.params || {}
+    return (
+        <View style ={styles.container}>
+            <Text style = {styles.textStyle}> {msg} : </Text>
+            <Image source = {{uri : imageUrl}} style ={styles.BigImage}/>
+        </View>
+    )
+}
+
+const styles = StyleSheet.create({
+    container : {
+        flex :1, 
+        justifyContent :'center',
+        alignItems :'center'
+    },
+    BigImage: {
+        width : '90%',
+        height : ' 90%',
+        resizeMode : 'contain'
+    },
+    textStyle : {
+        fontSize : 25 ,
+        fontWeight: 'bold' 
+    },
+
+})
+export default PictureScreen
