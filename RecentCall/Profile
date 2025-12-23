@@ -1,0 +1,33 @@
+import React from "react" ;
+import {View , Text , StyleSheet ,Image} from 'react-native' ;
+
+const Profile = ( {route} ) => {
+    const { userId, name, phone, avatar } = route.params || {}
+    return (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Image source={{ uri: avatar }} style={styles.BigImage} />
+            <Text style = {styles.textStyle}>{name}</Text>
+            <Text style = {styles.textStyle}>{phone}</Text>
+            <Text style = {{fontsize : 25 , fontWeight : 'bold'}}> ID: {userId}</Text>
+        </View>
+    )
+}
+
+const styles = StyleSheet.create({
+    container : {
+        flex :1, 
+        justifyContent :'center',
+        alignItems :'center'
+    },
+    BigImage: {
+        width : '300',
+        height : ' 300',
+        resizeMode : 'contain'
+    },
+    textStyle : {
+        fontSize : 25 ,
+        fontWeight: 'bold' 
+    },
+
+})
+export default Profile
