@@ -5,6 +5,7 @@ D:\mb68\labTwo>npm install @react-navigation/native @react-navigation/native-sta
 D:\mb68\labTwo>npx expo install react-native-screens react-native-safe-area-context
 
 D:\mb68>npm install @react-navigation/bottom-tabs
+npm install @react-navigation/bottom-tabs
 
 npm run android
 npm run web
