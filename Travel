@@ -1,0 +1,229 @@
+
+import React from 'react'
+import { View, Text, StyleSheet, Image, Pressable,FlatList,Alert } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import Ionicons from '@expo/vector-icons/Ionicons'
+
+/* ==============================
+   Custom Component: PlaceCard
+================================ */
+const PlaceCard = ({ title, location, imageUri, onPress }) => {
+  return (
+    <Pressable onPress={onPress}>
+      <View style={styles.card}>
+        <Image source={{ uri: imageUri }} style={styles.cardImage} />
+        <View style={styles.cardText}>
+          <Text style={styles.cardTitle}>{title}</Text>
+          <Text style={styles.cardLocation}>{location}</Text>
+        </View>
+      </View>
+    </Pressable>
+  )
+}
+
+/* ==============================
+   Home Screen (Place List)
+================================ */
+const places = [
+  {
+    id: '1',
+    title: 'ทะเล ชะอำ',
+    location: 'อำเภอชะอำ จังหวัดเพชรบุรี',
+    imageUri:
+      'https://cms.dmpcdn.com/travel/2022/04/04/df6ca270-b3f9-11ec-9d46-dbc29ed5b758_webp_original.jpg',
+    description: 'ยอดเขาที่สูงที่สุดในประเทศไทย อากาศหนาวตลอดปี',
+  },
+  {
+    id: '2',
+    title: 'หาดพัทยา ',
+    location: 'อำเภอบางละมุง จังหวัดชลบุรี',
+    imageUri:
+      'https://cms.dmpcdn.com/travel/2020/12/18/313c5140-4114-11eb-9b6d-3fdf37c2e48e_original.jpg',
+    description: 'พระบรมมหาราชวัง สถาปัตยกรรมที่งดงาม',
+  },
+  {
+    id: '3',
+    title: 'เขื่อนรัชชประภา',
+    location: 'อำเภอบ้านตาขุน จังหวัดสุราษฎร์ธานี',
+    imageUri:
+      'https://1672travelbuddy.com/article_images/48a4c2ea1d9ea549dc099f95d0d050d0.jpg',
+    description: 'ชายหาดสวย ล้อมรอบด้วยภูเขาหินปูน',
+  },
+]
+
+const HomeScreen = ({ navigation }) => {
+  return (
+    <FlatList
+      data={places}
+      keyExtractor={(item) => item.id}
+      contentContainerStyle={{ padding: 16 }}
+      renderItem={({ item }) => (
+        <PlaceCard
+          title={item.title}
+          location={item.location}
+          imageUri={item.imageUri}
+          onPress={() => navigation.navigate('Detail', item)}
+        />
+      )}
+    />
+  )
+}
+
+/* ==============================
+   Detail Screen
+================================ */
+const DetailScreen = ({ route }) => {
+  const { title, imageUri, description } = route.params
+
+  return (
+    <View style={styles.detailContainer}>
+      <Image source={{ uri: imageUri }} style={styles.detailImage} />
+      <Text style={styles.detailTitle}>{title}</Text>
+      <Text style={styles.detailDesc}>{description}</Text>
+
+      <Pressable
+        style={styles.bookButton}
+        onPress={() => Alert.alert('จองเลย', 'กำลังดำเนินการจอง')}
+      >
+        <Text style={{ color: '#fff', fontWeight: 'bold' }}>จองเลย</Text>
+      </Pressable>
+    </View>
+  )
+}
+
+/* ==============================
+   Profile Screen
+================================ */
+const ProfileScreen = () => {
+  return (
+    <View style={styles.profileContainer}>
+      <Image
+        source={{
+          uri: 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
+        }}
+        style={styles.profileImage}
+      />
+      <Text style={styles.profileName}>Kunakorn Kanlayawutipong</Text>
+      <Text style={styles.profileBio}>6621600143 🌍</Text>
+    </View>
+  )
+}
+
+/* ==============================
+   Navigation
+================================ */
+const Stack = createNativeStackNavigator()
+const Tab = createBottomTabNavigator()
+
+const ExploreStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ title: 'สถานที่เที่ยว' }}
+      />
+      <Stack.Screen
+        name="Detail"
+        component={DetailScreen}
+        options={{ title: 'รายละเอียด' }}
+      />
+    </Stack.Navigator>
+  )
+}
+
+const App =() => {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => {
+            let icon = route.name === 'Explore' ? 'map' : 'person'
+            return <Ionicons name={icon} size={size} color={color} />
+          },
+          tabBarActiveTintColor: '#FF6B6B',
+          tabBarInactiveTintColor: 'gray',
+        })}
+      >
+        <Tab.Screen name="Explore" component={ExploreStack} />
+        <Tab.Screen name="Profile" component={ProfileScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  )
+}
+export default App
+
+/* ==============================
+   Styles
+================================ */
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    marginBottom: 16,
+    elevation: 5,
+    overflow: 'hidden',
+  },
+  cardImage: {
+    width: '100%',
+    height: 180,
+  },
+  cardText: {
+    padding: 12,
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  cardLocation: {
+    color: 'gray',
+    marginTop: 4,
+  },
+  detailContainer: {
+    padding: 16,
+  },
+  detailImage: {
+    width: '100%',
+    height: 250,
+    borderRadius: 12,
+  },
+  detailTitle: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginTop: 12,
+  },
+  detailDesc: {
+    marginTop: 8,
+    fontSize: 16,
+  },
+  bookButton: {
+    marginTop: 20,
+    backgroundColor: '#FF6B6B',
+    padding: 12,
+    alignItems: 'center',
+    borderRadius: 8,
+  },
+  profileContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  profileImage: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+  },
+  profileName: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginTop: 12,
+  },
+  profileBio: {
+    color: 'gray',
+    marginTop: 4,
+  },
+})
+
