@@ -7,5 +7,7 @@ D:\mb68\labTwo>npx expo install react-native-screens react-native-safe-area-cont
 D:\mb68>npm install @react-navigation/bottom-tabs
 npm install @react-navigation/bottom-tabs
 
+npx expo install @react-native-picker/picker
+
 npm run android
 npm run web
