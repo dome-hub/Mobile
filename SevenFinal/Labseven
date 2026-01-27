@@ -1,0 +1,114 @@
+import React, { useState } from 'react';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+
+export default function App() {
+  // const [name, setName] = useState('') // เวลาจะเพิ่มช่องกรอกอะไร ต้องเพิ่มตรงนี้
+  // const [email, setEmail] = useState('')
+  // const [password, setPassword] = useState('')
+  const [form, setForm] = useState({ // useState แบบรวม ตอนเรียกต้อง form.
+    fullname: '',
+    email: '',
+    password: '',
+    phone: ''
+  })
+
+  const handleChange = (name, value) => { // ไว้อัพแดดค่า
+    setForm(prev => ({
+      ...prev, // ของเก่า
+      [name]: value // object อะไร valueใหม่คืออะไร
+    }))
+  } 
+
+  const handleSubmit = () => { // เรียกแสดง Alert
+    Alert.alert("ยืนยันข้อมูล", `ชื่อของคุณคือ ${form.fullname} \nอีเมลของคุณคือ ${form.email}`) 
+  }
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.label}>ชื่อ - นามสกุล:</Text>
+      <TextInput 
+        style={styles.input}
+        placeholder='กรุณากรอกชื่อ - นามสกุล...' 
+        value={form.fullname}
+        onChangeText={(text) => handleChange('fullname', text)} // text คือ ข้อความใน textbox
+      />
+      <Text style={styles.label}>อีเมล:</Text>
+      <TextInput 
+        style={styles.input}
+        placeholder='กรุณากรอกอีเมล...' 
+        keyboardType='email-address'
+        value={form.email}
+        onChangeText={(text) => handleChange('email', text)}
+      />
+      <Text style={styles.label}>รหัสผ่าน:</Text>
+      <TextInput 
+        style={styles.input}
+        placeholder='กรุณากรอกรหัสผ่าน...'
+        secureTextEntry={true} // ทำให้ตอนใส่รหัสผ่านเป็นจุด ไม่แสดงตัวอักษร
+        value={form.password}
+        onChangeText={(text) => handleChange('password' ,text)}
+      />
+      <Text style={styles.label}>เบอร์โทร:</Text>
+      <TextInput 
+        style={styles.input}
+        placeholder='กรุณากรอกเบอร์โทร...' 
+        secureTextEntry={true} 
+        value={form.phone}
+        onChangeText={(text) => handleChange('phone' ,text)}
+      />
+
+      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+        <Text style={styles.buttonText}>ยืนยันข้อมูล</Text>
+      </TouchableOpacity>
+      {/* <Text style={styles.results}>{`ชื่อของคุณคือ ${form.fullname} \nอีเมลของคุณคือ ${form.email}`}</Text> */}
+      <Text style={styles.results}>{JSON.stringify(form)}</Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title : {
+    fontSize : 22,
+    marginBottom : 28,
+    fontWeight : 'bold'
+  },
+  label: {
+    fontSize: 16,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    fontSize: 16,
+    marginBottom: 15
+  },
+  button: {
+    backgroundColor: 'lightsalmon',
+    padding: 15,
+    borderRadius: 8,
+    alignItems: 'center'
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
+  results: {
+    marginTop: 40,
+    color: '#aaa',
+    fontSize: 14,
+    
+    borderWidth: 2,
+    borderColor: '#7a6bafff',
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 10
+  }
+});
