@@ -9,5 +9,7 @@ npm install @react-navigation/bottom-tabs
 
 npx expo install @react-native-picker/picker
 
+npx expo install expo-image-picker
+
 npm run android
 npm run web
