@@ -11,5 +11,8 @@ npx expo install @react-native-picker/picker
 
 npx expo install expo-image-picker
 npx expo install expo-image-picker @react-native-picker/picker expo-constants
+
+npx expo install @expo/vector-icons
+
 npm run android
 npm run web
